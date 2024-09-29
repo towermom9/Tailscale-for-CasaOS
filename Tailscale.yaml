@@ -1,0 +1,49 @@
+name: tailscale
+services:
+  tailscale:
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    cpu_shares: 90
+    command: []
+    container_name: tailscaled
+    deploy:
+      resources:
+        limits:
+          memory: 1928M
+    environment:
+      - TS_AUTH_ONCE=true
+      - TS_AUTHKEY=[authkey]
+      - TS_EXTRA_ARGS=--advertise-routes=[LAN]/24 --advertise-exit-node --ssh --accept-dns=false
+      - TS_STATE_DIR=/var/lib/tailscale
+    hostname: tailscaled
+    image: tailscale/tailscale:latest
+    labels:
+      icon: https://avatars.githubusercontent.com/u/48932923
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: /DATA/AppData/tailscale/var/lib
+        target: /var/lib
+      - type: bind
+        source: /DATA/AppData/tailscale/dev/net/tun
+        target: /dev/net/tun
+      - type: bind
+        source: /DATA/AppData/tailscale/var/lib/tailscale
+        target: /var/lib/tailscale
+    ports: []
+    devices: []
+    network_mode: host
+    privileged: false
+x-casaos:
+  author: self
+  category: self
+  hostname: ""
+  icon: https://avatars.githubusercontent.com/u/48932923
+  index: /
+  is_uncontrolled: false
+  port_map: ""
+  scheme: http
+  store_app_id: loving_navin
+  title:
+    custom: Tailscale
