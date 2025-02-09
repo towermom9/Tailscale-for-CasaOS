@@ -44,6 +44,6 @@ x-casaos:
   is_uncontrolled: false
   port_map: ""
   scheme: http
-  store_app_id: loving_navin
+  store_app_id: Tailscale
   title:
     custom: Tailscale
