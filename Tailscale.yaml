@@ -17,7 +17,7 @@ services:
       - TS_EXTRA_ARGS=--advertise-exit-node --advertise-routes [LAN]/24
         --accept-dns=false --accept-routes -ssh
       - TS_STATE_DIR=/var/lib/tailscale
-      - TS_USERSPACE=true
+      - TS_USERSPACE=false
     hostname: tailscaled
     image: tailscale/tailscale:latest
     labels:
